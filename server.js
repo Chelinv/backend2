@@ -10,10 +10,14 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // Conexión a MongoDB
-mongoose.connect("mongodb://127.0.0.1:27017/fabrica", {
+const MONGO_URI = 'mongodb+srv://chelinv2004:MD1217cv2019@cluster0.xfa8v.mongodb.net/fabrica'; 
+
+mongoose.connect(MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-});
+})
+.then(() => console.log('✅ Conectado a MongoDB'))
+.catch(err => console.error('❌ Error al conectar a MongoDB:', err));
 
 // Esquema y modelo
 const ModeloSchema = new mongoose.Schema({
