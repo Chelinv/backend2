@@ -6,14 +6,7 @@ const cors = require("cors");
 const app = express();
 
 // Middlewares
-const cors = require("cors");
-
-app.use(cors({
-  origin: "https://frontend2-67s5.vercel.app/", // O permitir solo tu frontend: "https://tudominio.vercel.app"
-  methods: ["GET", "POST"],
-  allowedHeaders: ["Content-Type"]
-}));
-
+app.use(cors());
 app.use(bodyParser.json());
 
 // Conexión a MongoDB
@@ -39,7 +32,6 @@ const Modelo = mongoose.model("Modelo", ModeloSchema);
 
 // Rutas
 app.post("/api/modelos", async (req, res) => {
-  console.log("Recibido:", req.body); // Ver si el backend recibe datos
   try {
     const nuevoModelo = new Modelo(req.body);
     await nuevoModelo.save();
